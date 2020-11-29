@@ -8,7 +8,7 @@
 ; ; +sc03A::send,{CapsLock up}{CapsLock down}
 ; CapsLock::Return
 
-;;;default;;;
+;;;DEFAULT;;;
 >!s::send,{Left}
 >!e::send,{Up}
 >!d::send,{Down}
@@ -248,51 +248,101 @@
 ^#>!-::send,{Shift down}{LWin down}{F11}{LWin up}{Shift up}
 ^#>!=::send,{Shift down}{LWin down}{F12}{LWin up}{Shift up}
 
+RAlt::return
 
-;;;mouse;;;
-#if GetKeyState("AppsKey", "P")
-;;;move;;;
-	e::MouseMove 0,-20,0,R
-	d::MouseMove 0,20,0,R
-	s::MouseMove -20,0,0,R
-	f::MouseMove 20,0,0,R
-	+e::MouseMove 0,-10,0,R
-	+d::MouseMove 0,10,0,R
-	+s::MouseMove -10,0,0,R
-	+f::MouseMove 10,0,0,R
-;;;wheel;;;
-	t::
+
+;;;MOUSE;;;
+#if GetKeyState("CapsLock", "P")
+;;;MOVE;;;
+	w::
+	MouseMove 0,-20,0,R
+	return
+	s::
+	MouseMove 0,20,0,R
+	return
+	a::
+	MouseMove -20,0,0,R
+	return
+	d::
+	MouseMove 20,0,0,R
+	return
+	<!w::
+	MouseMove 0,-10,0,R
+	return
+	<!s::
+	MouseMove 0,10,0,R
+	return
+	<!a::
+	MouseMove -10,0,0,R
+	return
+	<!d::
+	MouseMove 10,0,0,R
+	return
+;;;SCROLL;;;
+	r::
 	Click,WU,1
 	return
-	g::
+	f::
 	Click,WD,1
 	return
-	q:: ; 왼쪽으로 스크롤.
+	q::
 	ControlGetFocus, fcontrol, A
-	Loop 2 ; <-- 스크롤 속도를 높이려면 이 값을 증가시킨다.
-	SendMessage, 0x114, 0, 0, %fcontrol%, A ; 0x114 은 WM_HSCROLL 메시지, 다음에 있는 0은 SB_LINERIGHT.
+	Loop 2 ; <-- scroll speed
+	SendMessage, 0x114, 0, 0, %fcontrol%, A ; 0x114: WM_HSCROLL, 0: SB_LINERIGHT.
 	return
-	w:: ; 왼쪽으로 스크롤.
+	e::
 	ControlGetFocus, fcontrol, A
-	Loop 2 ; <-- 스크롤 속도를 높이려면 이 값을 증가시킨다.
-	SendMessage, 0x114, 1, 0, %fcontrol%, A ; 0x114 은 WM_HSCROLL, 다음에 있는 1은 SB_LINELEFT.
+	Loop 2 ; <-- scroll speed.
+	SendMessage, 0x114, 1, 0, %fcontrol%, A ; 0x114: WM_HSCROLL, 1: SB_LINELEFT.
 	return
-;;;click;;;
-	x::
+;;;CLICK;;;
+	Space::
 	send,{Lbutton}
 	return
 	c::
 	send,{Mbutton}
 	return
-	v::
+	x::
 	send,{Rbutton}
+	return
+	
+	;;;ALTER CAPSLOCK;;;
+	Enter::
+	KeyWait,CapsLock
+	KeyWait,Enter
+	if GetKeyState("CapsLock","T"){
+		SetCapslockState, Off
+		return
+	}
+	else{
+		SetCapslockState, On
+		return
+	}
 	return
 #if
 
-RAlt::return
+CapsLock::return
 
 
+
+;;;CONTROL IME;;;
+; 左Shiftが単体で押されたら、直接入力
+~LShift Up::
+if (A_PriorKey = "LShift") {
+    Send, {vkF2sc070B}{vkF3sc029}
+}
+Return
+
+; 右Shiftが単体で押されたら、ひらがな入力
+~RShift Up::
+if (A_PriorKey = "RShift") {
+    Send, {vkF2sc070B}
+}
+Return
+
+;;;CONTROL THIS SCRIPT;;;
 >^r::
-msgbox,"Reload"
+msgbox,Reloaded
 Reload
 Return
+
