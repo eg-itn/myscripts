@@ -250,48 +250,46 @@
 
 
 ;;;mouse;;;
+#if GetKeyState("AppsKey", "P")
 ;;;move;;;
-Appskey & e::
-MouseMove 0,-20,0,R
-return
-Appskey & d::
-MouseMove 0,20,0,R
-return
-Appskey & s::
-MouseMove -20,0,0,R
-return
-Appskey & f::
-MouseMove 20,0,0,R
-return
+	e::MouseMove 0,-20,0,R
+	d::MouseMove 0,20,0,R
+	s::MouseMove -20,0,0,R
+	f::MouseMove 20,0,0,R
+	+e::MouseMove 0,-10,0,R
+	+d::MouseMove 0,10,0,R
+	+s::MouseMove -10,0,0,R
+	+f::MouseMove 10,0,0,R
 ;;;wheel;;;
-Appskey & t::
-Click,WU,1
-return
-Appskey & g::
-Click,WD,1
-return
-Appskey & q:: ; 왼쪽으로 스크롤.
-ControlGetFocus, fcontrol, A
-Loop 2 ; <-- 스크롤 속도를 높이려면 이 값을 증가시킨다.
-SendMessage, 0x114, 0, 0, %fcontrol%, A ; 0x114 은 WM_HSCROLL 메시지, 다음에 있는 0은 SB_LINERIGHT.
-return
-Appskey & w:: ; 왼쪽으로 스크롤.
-ControlGetFocus, fcontrol, A
-Loop 2 ; <-- 스크롤 속도를 높이려면 이 값을 증가시킨다.
-SendMessage, 0x114, 1, 0, %fcontrol%, A ; 0x114 은 WM_HSCROLL, 다음에 있는 1은 SB_LINELEFT.
-return
+	t::
+	Click,WU,1
+	return
+	g::
+	Click,WD,1
+	return
+	q:: ; 왼쪽으로 스크롤.
+	ControlGetFocus, fcontrol, A
+	Loop 2 ; <-- 스크롤 속도를 높이려면 이 값을 증가시킨다.
+	SendMessage, 0x114, 0, 0, %fcontrol%, A ; 0x114 은 WM_HSCROLL 메시지, 다음에 있는 0은 SB_LINERIGHT.
+	return
+	w:: ; 왼쪽으로 스크롤.
+	ControlGetFocus, fcontrol, A
+	Loop 2 ; <-- 스크롤 속도를 높이려면 이 값을 증가시킨다.
+	SendMessage, 0x114, 1, 0, %fcontrol%, A ; 0x114 은 WM_HSCROLL, 다음에 있는 1은 SB_LINELEFT.
+	return
 ;;;click;;;
-Appskey & x::
-send,{Lbutton}
-return
-Appskey & c::
-send,{Mbutton}
-return
-Appskey & v::
-send,{Rbutton}
-return
+	x::
+	send,{Lbutton}
+	return
+	c::
+	send,{Mbutton}
+	return
+	v::
+	send,{Rbutton}
+	return
+#if
 
-
+RAlt::return
 
 
 >^r::
