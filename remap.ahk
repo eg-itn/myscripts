@@ -2,7 +2,6 @@
 
 !ESC::send,{Blind}{sc029}
 
-
 ; +CapsLock::CapsLock
 ; ; sc03A::send,{CapsLock up}{CapsLock down}
 ; ; +sc03A::send,{CapsLock up}{CapsLock down}
@@ -253,8 +252,27 @@
 RAlt::return
 
 
+
 ;;;MOUSE;;;
-#if GetKeyState("CapsLock", "P")
+CapsLock::
+keywait, CapsLock, U
+keywait, CapsLock, D T0.2
+if (ErrorLevel = 1) {
+	return ;If CAPSLOCK is pressed once, do nothing
+}
+else { ;pressed twice within 0.2 seconds
+	if (mousemode) {
+		mousemode := False ;turn off the mousemode
+		return
+	}
+	else{
+		mousemode := True ;turn off the mousemode
+		return
+	}
+}
+return
+
+#if GetKeyState("CapsLock", "P") or (mousemode)
 ;;;MOVE;;;
 	w::
 	MouseMove 0,-20,0,R
@@ -323,7 +341,6 @@ RAlt::return
 	return
 #if
 
-CapsLock::return
 
 
 
