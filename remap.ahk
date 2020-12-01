@@ -142,6 +142,33 @@
 <#>!-::send,{LWin down}{F11}{LWin up}
 <#>!=::send,{LWin down}{F12}{LWin up}
 
+;;;Ctrl Shift;;;
+^+>!s::send,{Ctrl down}{Shift down}{Left}{Shift up}{Ctrl up}
+^+>!e::send,{Ctrl down}{Shift down}{Up}{Shift up}{Ctrl up}
+^+>!d::send,{Ctrl down}{Shift down}{Down}{Shift up}{Ctrl up}
+^+>!f::send,{Ctrl down}{Shift down}{Right}{Shift up}{Ctrl up}
+^+>!u::send,{Ctrl down}{Shift down}{PrintScreen}{Shift up}{Ctrl up}
+^+>!i::send,{Ctrl down}{Shift down}{ScrollLock}{Shift up}{Ctrl up}
+^+>!o::send,{Ctrl down}{Shift down}{Pause}{Shift up}{Ctrl up}
+^+>!k::send,{Ctrl down}{Shift down}{Home}{Shift up}{Ctrl up}
+^+>!,::send,{Ctrl down}{Shift down}{End}{Shift up}{Ctrl up}
+^+>!l::send,{Ctrl down}{Shift down}{PgUp}{Shift up}{Ctrl up}
+^+>!.::send,{Ctrl down}{Shift down}{PgDn}{Shift up}{Ctrl up}
+^+>!j::send,{Ctrl down}{Shift down}{Ins}{Shift up}{Ctrl up}
+^+>!m::send,{Ctrl down}{Shift down}{Del}{Shift up}{Ctrl up}
+^+>!1::send,{Ctrl down}{Shift down}{F1}{Shift up}{Ctrl up}
+^+>!2::send,{Ctrl down}{Shift down}{F2}{Shift up}{Ctrl up}
+^+>!3::send,{Ctrl down}{Shift down}{F3}{Shift up}{Ctrl up}
+^+>!4::send,{Ctrl down}{Shift down}{F4}{Shift up}{Ctrl up}
+^+>!5::send,{Ctrl down}{Shift down}{F5}{Shift up}{Ctrl up}
+^+>!6::send,{Ctrl down}{Shift down}{F6}{Shift up}{Ctrl up}
+^+>!7::send,{Ctrl down}{Shift down}{F7}{Shift up}{Ctrl up}
+^+>!8::send,{Ctrl down}{Shift down}{F8}{Shift up}{Ctrl up}
+^+>!9::send,{Ctrl down}{Shift down}{F9}{Shift up}{Ctrl up}
+^+>!0::send,{Ctrl down}{Shift down}{F10}{Shift up}{Ctrl up}
+^+>!-::send,{Ctrl down}{Shift down}{F11}{Shift up}{Ctrl up}
+^+>!=::send,{Ctrl down}{Shift down}{F12}{Shift up}{Ctrl up}
+
 ;;;Shift Alt;;;
 ^<!>!s::send,{Shift down}{Alt down}{Left}{Alt up}{Shift up}
 ^<!>!e::send,{Shift down}{Alt down}{Up}{Alt up}{Shift up}
@@ -169,57 +196,32 @@
 ^<!>!-::send,{Shift down}{Alt down}{F11}{Alt up}{Shift up}
 ^<!>!=::send,{Shift down}{Alt down}{F12}{Alt up}{Shift up}
 
-;;;Ctrl Shift;;;
-^+>!s::send,{Ctrl down}{Shift down}{Left}{Shift up}{Ctrl up}
-^+>!e::send,{Ctrl down}{Shift down}{Up}{Shift up}{Ctrl up}
-^+>!d::send,{Ctrl down}{Shift down}{Down}{Shift up}{Ctrl up}
-^+>!f::send,{Ctrl down}{Shift down}{Right}{Shift up}{Ctrl up}
-^+>!u::send,{Ctrl down}{Shift down}{PrintScreen}{Shift up}{Ctrl up}
-^+>!i::send,{Ctrl down}{Shift down}{ScrollLock}{Shift up}{Ctrl up}
-^+>!o::send,{Ctrl down}{Shift down}{Pause}{Shift up}{Ctrl up}
-^+>!k::send,{Ctrl down}{Shift down}{Home}{Shift up}{Ctrl up}
-^+>!,::send,{Ctrl down}{Shift down}{End}{Shift up}{Ctrl up}
-^+>!l::send,{Ctrl down}{Shift down}{PgUp}{Shift up}{Ctrl up}
-^+>!.::send,{Ctrl down}{Shift down}{PgDn}{Shift up}{Ctrl up}
-^+>!1::send,{Ctrl down}{Shift down}{F1}{Shift up}{Ctrl up}
-^+>!2::send,{Ctrl down}{Shift down}{F2}{Shift up}{Ctrl up}
-^+>!3::send,{Ctrl down}{Shift down}{F3}{Shift up}{Ctrl up}
-^+>!4::send,{Ctrl down}{Shift down}{F4}{Shift up}{Ctrl up}
-^+>!5::send,{Ctrl down}{Shift down}{F5}{Shift up}{Ctrl up}
-^+>!6::send,{Ctrl down}{Shift down}{F6}{Shift up}{Ctrl up}
-^+>!7::send,{Ctrl down}{Shift down}{F7}{Shift up}{Ctrl up}
-^+>!8::send,{Ctrl down}{Shift down}{F8}{Shift up}{Ctrl up}
-^+>!9::send,{Ctrl down}{Shift down}{F9}{Shift up}{Ctrl up}
-^+>!0::send,{Ctrl down}{Shift down}{F10}{Shift up}{Ctrl up}
-^+>!-::send,{Ctrl down}{Shift down}{F11}{Shift up}{Ctrl up}
-^+>!=::send,{Ctrl down}{Shift down}{F12}{Shift up}{Ctrl up}
-
-;;;Shift Alt;;;
-+<!>!s::send,{Shift down}{Alt down}{Left}{Alt up}{Shift up}
-+<!>!e::send,{Shift down}{Alt down}{Up}{Alt up}{Shift up}
-+<!>!d::send,{Shift down}{Alt down}{Down}{Alt up}{Shift up}
-+<!>!f::send,{Shift down}{Alt down}{Right}{Alt up}{Shift up}
-+<!>!u::send,{Shift down}{Alt down}{PrintScreen}{Alt up}{Shift up}
-+<!>!i::send,{Shift down}{Alt down}{ScrollLock}{Alt up}{Shift up}
-+<!>!o::send,{Shift down}{Alt down}{Pause}{Alt up}{Shift up}
-+<!>!k::send,{Shift down}{Alt down}{Home}{Alt up}{Shift up}
-+<!>!,::send,{Shift down}{Alt down}{End}{Alt up}{Shift up}
-+<!>!l::send,{Shift down}{Alt down}{PgUp}{Alt up}{Shift up}
-+<!>!.::send,{Shift down}{Alt down}{PgDn}{Alt up}{Shift up}
-+<!>!j::send,{Shift down}{Alt down}{Ins}{Alt up}{Shift up}
-+<!>!m::send,{Shift down}{Alt down}{Del}{Alt up}{Shift up}
-+<!>!1::send,{Shift down}{Alt down}{F1}{Alt up}{Shift up}
-+<!>!2::send,{Shift down}{Alt down}{F2}{Alt up}{Shift up}
-+<!>!3::send,{Shift down}{Alt down}{F3}{Alt up}{Shift up}
-+<!>!4::send,{Shift down}{Alt down}{F4}{Alt up}{Shift up}
-+<!>!5::send,{Shift down}{Alt down}{F5}{Alt up}{Shift up}
-+<!>!6::send,{Shift down}{Alt down}{F6}{Alt up}{Shift up}
-+<!>!7::send,{Shift down}{Alt down}{F7}{Alt up}{Shift up}
-+<!>!8::send,{Shift down}{Alt down}{F8}{Alt up}{Shift up}
-+<!>!9::send,{Shift down}{Alt down}{F9}{Alt up}{Shift up}
-+<!>!0::send,{Shift down}{Alt down}{F10}{Alt up}{Shift up}
-+<!>!-::send,{Shift down}{Alt down}{F11}{Alt up}{Shift up}
-+<!>!=::send,{Shift down}{Alt down}{F12}{Alt up}{Shift up}
+;;;Ctrl Alt;;;
++<!>!s::send,{Ctrl down}{Alt down}{Left}{Alt up}{Ctrl up}
++<!>!e::send,{Ctrl down}{Alt down}{Up}{Alt up}{Ctrl up}
++<!>!d::send,{Ctrl down}{Alt down}{Down}{Alt up}{Ctrl up}
++<!>!f::send,{Ctrl down}{Alt down}{Right}{Alt up}{Ctrl up}
++<!>!u::send,{Ctrl down}{Alt down}{PrintScreen}{Alt up}{Ctrl up}
++<!>!i::send,{Ctrl down}{Alt down}{ScrollLock}{Alt up}{Ctrl up}
++<!>!o::send,{Ctrl down}{Alt down}{Pause}{Alt up}{Ctrl up}
++<!>!k::send,{Ctrl down}{Alt down}{Home}{Alt up}{Ctrl up}
++<!>!,::send,{Ctrl down}{Alt down}{End}{Alt up}{Ctrl up}
++<!>!l::send,{Ctrl down}{Alt down}{PgUp}{Alt up}{Ctrl up}
++<!>!.::send,{Ctrl down}{Alt down}{PgDn}{Alt up}{Ctrl up}
++<!>!j::send,{Ctrl down}{Alt down}{Ins}{Alt up}{Ctrl up}
++<!>!m::send,{Ctrl down}{Alt down}{Del}{Alt up}{Ctrl up}
++<!>!1::send,{Ctrl down}{Alt down}{F1}{Alt up}{Ctrl up}
++<!>!2::send,{Ctrl down}{Alt down}{F2}{Alt up}{Ctrl up}
++<!>!3::send,{Ctrl down}{Alt down}{F3}{Alt up}{Ctrl up}
++<!>!4::send,{Ctrl down}{Alt down}{F4}{Alt up}{Ctrl up}
++<!>!5::send,{Ctrl down}{Alt down}{F5}{Alt up}{Ctrl up}
++<!>!6::send,{Ctrl down}{Alt down}{F6}{Alt up}{Ctrl up}
++<!>!7::send,{Ctrl down}{Alt down}{F7}{Alt up}{Ctrl up}
++<!>!8::send,{Ctrl down}{Alt down}{F8}{Alt up}{Ctrl up}
++<!>!9::send,{Ctrl down}{Alt down}{F9}{Alt up}{Ctrl up}
++<!>!0::send,{Ctrl down}{Alt down}{F10}{Alt up}{Ctrl up}
++<!>!-::send,{Ctrl down}{Alt down}{F11}{Alt up}{Ctrl up}
++<!>!=::send,{Ctrl down}{Alt down}{F12}{Alt up}{Ctrl up}
 
 ;;;Shift LWin;;;
 ^#>!s::send,{Shift down}{LWin down}{Left}{LWin up}{Shift up}
