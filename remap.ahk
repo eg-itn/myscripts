@@ -260,9 +260,9 @@ keywait, CapsLock, D T0.2
 if (ErrorLevel = 1) {
 	return ;If CAPSLOCK is pressed once, do nothing
 }
-else {　;pressed twice within 0.2 seconds
+else { ;pressed twice within 0.2 seconds
 	if (mousemode) {
-		mousemode := False　;turn off the mousemode
+		mousemode := False ;turn off the mousemode
 		return
 	}
 	else{
@@ -273,6 +273,7 @@ else {　;pressed twice within 0.2 seconds
 return
 
 #if GetKeyState("CapsLock", "P") or (mousemode)
+	Tab::send,{ESC}
 ;;;MOVE;;;
 	w::
 	MouseMove 0,-20,0,R
@@ -298,6 +299,27 @@ return
 	<!d::
 	MouseMove 10,0,0,R
 	return
+	Space & w::
+	Sysget, M_height, 1 ; get height of the monitor
+	MouseMove 0, M_height*(-1/4), 0, R
+	return
+	Space & s::
+	Sysget, M_height, 1 ; get height of the monitor
+	MouseMove 0, M_height*(1/4), 0, R
+	return
+	Space & a::
+	Sysget, M_width, 0 ; get width of the monitor
+	MouseMove M_width*(-1/4), 0, 0, R
+	return
+	Space & d::
+	Sysget, M_width, 0 ; get width of the monitor
+	MouseMove M_width*(1/4), 0, 0, R
+	return
+	i::
+	MouseGetPos, MX, MY
+	tooltip, %MX% %MY%
+	return
+	
 ;;;SCROLL;;;
 	r::
 	Click,WU,1
@@ -316,20 +338,69 @@ return
 	SendMessage, 0x114, 1, 0, %fcontrol%, A ; 0x114: WM_HSCROLL, 1: SB_LINELEFT.
 	return
 ;;;CLICK;;;
-	Space::
-	send,{Lbutton}
-	return
-	c::
-	send,{Mbutton}
+	z::
+	keywait, z, U
+	keywait, z, D T0.2
+	if (ErrorLevel = 1) {
+		send,{Lbutton}
+		return ;If z is pressed once, click
+	}
+	else { ;pressed twice within 0.1 seconds
+		if (dragmode) {
+			dragmode := False ;turn off the dragmode
+			send, {Lbutton up}
+			return
+		}
+		else{
+			dragmode := True ;turn off the dragmode
+			send, {Lbutton down}
+			return
+		}
+	}
 	return
 	x::
-	send,{Rbutton}
+	keywait, x, U
+	keywait, x, D T0.2
+	if (ErrorLevel = 1) {
+		send,{Mbutton}
+		return ;If x is pressed once, click
+	}
+	else { ;pressed twice within 0.1 seconds
+		if (dragmode) {
+			dragmode := False ;turn off the dragmode
+			send, {Mbutton up}
+			return
+		}
+		else{
+			dragmode := True ;turn off the dragmode
+			send, {Mbutton down}
+			return
+		}
+	}
+	return
+	c::
+	keywait, c, U
+	keywait, c, D T0.2
+	if (ErrorLevel = 1) {
+		send,{Rbutton}
+		return ;If z is pressed once, click
+	}
+	else { ;pressed twice within 0.1 seconds
+		if (dragmode) {
+			dragmode := False ;turn off the dragmode
+			send, {Rbutton up}
+			return
+		}
+		else{
+			dragmode := True ;turn off the dragmode
+			send, {Rbutton down}
+			return
+		}
+	}
 	return
 	
 	;;;ALTER CAPSLOCK;;;
 	Enter::
-	KeyWait,CapsLock
-	KeyWait,Enter
 	if GetKeyState("CapsLock","T"){
 		SetCapslockState, Off
 		return
@@ -364,4 +435,3 @@ Return
 msgbox,Reloaded
 Reload
 Return
-
