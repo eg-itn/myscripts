@@ -339,64 +339,13 @@ return
 	return
 ;;;CLICK;;;
 	z::
-	keywait, z, U
-	keywait, z, D T0.2
-	if (ErrorLevel = 1) {
-		send,{Lbutton}
-		return ;If z is pressed once, click
-	}
-	else { ;pressed twice within 0.1 seconds
-		if (dragmode) {
-			dragmode := False ;turn off the dragmode
-			send, {Lbutton up}
-			return
-		}
-		else{
-			dragmode := True ;turn off the dragmode
-			send, {Lbutton down}
-			return
-		}
-	}
+	send,{LButton}
 	return
 	x::
-	keywait, x, U
-	keywait, x, D T0.2
-	if (ErrorLevel = 1) {
-		send,{Mbutton}
-		return ;If x is pressed once, click
-	}
-	else { ;pressed twice within 0.1 seconds
-		if (dragmode) {
-			dragmode := False ;turn off the dragmode
-			send, {Mbutton up}
-			return
-		}
-		else{
-			dragmode := True ;turn off the dragmode
-			send, {Mbutton down}
-			return
-		}
-	}
+	send,{MButton}
 	return
 	c::
-	keywait, c, U
-	keywait, c, D T0.2
-	if (ErrorLevel = 1) {
-		send,{Rbutton}
-		return ;If z is pressed once, click
-	}
-	else { ;pressed twice within 0.1 seconds
-		if (dragmode) {
-			dragmode := False ;turn off the dragmode
-			send, {Rbutton up}
-			return
-		}
-		else{
-			dragmode := True ;turn off the dragmode
-			send, {Rbutton down}
-			return
-		}
-	}
+	send,{RButton}
 	return
 	
 	;;;ALTER CAPSLOCK;;;
