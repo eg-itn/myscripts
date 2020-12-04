@@ -364,20 +364,20 @@ return
 
 
 
-;;;CONTROL IME;;;
-; 左Shiftが単体で押されたら、直接入力
-~LShift Up::
-if (A_PriorKey = "LShift") {
-    Send, {vkF2sc070B}{vkF3sc029}
-}
-Return
+; ;;;CONTROL IME;;;
+; ; 左Shiftが単体で押されたら、直接入力
+; ~LShift Up::
+; if (A_PriorKey = "LShift") {
+    ; Send, {vkF2sc070B}{vkF3sc029}
+; }
+; Return
 
-; 右Shiftが単体で押されたら、ひらがな入力
-~RShift Up::
-if (A_PriorKey = "RShift") {
-    Send, {vkF2sc070B}
-}
-Return
+; ; 右Shiftが単体で押されたら、ひらがな入力
+; ~RShift Up::
+; if (A_PriorKey = "RShift") {
+    ; Send, {vkF2sc070B}
+; }
+; Return
 
 ;;;CONTROL THIS SCRIPT;;;
 >^r::
