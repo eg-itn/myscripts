@@ -33,6 +33,7 @@
 >!0::send,{F10}
 >!-::send,{F11}
 >!=::send,{F12}
+>!;::send,{BS}
 
 ;;;Ctrl;;;
 <^>!s::send,{Ctrl down}{Left}{Ctrl up}
@@ -273,6 +274,7 @@ else { ;pressed twice within 0.2 seconds
 return
 
 #if GetKeyState("CapsLock", "P") or (mousemode)
+	Tab::send,{ESC}
 ;;;MOVE;;;
 	w::
 	MouseMove 0,-20,0,R
@@ -298,6 +300,35 @@ return
 	<!d::
 	MouseMove 10,0,0,R
 	return
+	Space & w::
+	Sysget, M_height, 1 ; get height of the monitor
+	MouseMove 0, M_height*(-1/4), 0, R
+	return
+	Space & s::
+	Sysget, M_height, 1 ; get height of the monitor
+	MouseMove 0, M_height*(1/4), 0, R
+	return
+	Space & a::
+	Sysget, M_width, 0 ; get width of the monitor
+	MouseMove M_width*(-1/4), 0, 0, R
+	return
+	Space & d::
+	Sysget, M_width, 0 ; get width of the monitor
+	MouseMove M_width*(1/4), 0, 0, R
+	return
+	i::
+	loop {
+	CoordMode, Mouse, Screen
+	MouseGetPos, screenX, screenY
+	CoordMode, Mouse, Relative
+	MouseGetPos, relativeX, relativeY
+	CoordMode, Mouse, Client
+	MouseGetPos, clientX, clientY
+	Tooltip, Absolute Coordinate: %screenX%`, %screenY%`nRelative Coordinate: %relativeX%`, %relativeY%`nClient Coordinate: %clientX%`, %clientY%
+	sleep, 500
+	}
+	return
+	
 ;;;SCROLL;;;
 	r::
 	Click,WU,1
@@ -316,48 +347,56 @@ return
 	SendMessage, 0x114, 1, 0, %fcontrol%, A ; 0x114: WM_HSCROLL, 1: SB_LINELEFT.
 	return
 ;;;CLICK;;;
-	Space::
-	send,{Lbutton}
+	1::
+	send,{LButton}
+	return
+	2::
+	send,{MButton}
+	return
+	3::
+	send,{RButton}
+	return
+
+;;;DRAG;;;
+	z::
+	if(GetKeyState("Lbutton")) {
+		send, {Lbutton up}
+	}
+	else {
+		send, {Lbutton down}
+	}
 	return
 	c::
-	send,{Mbutton}
+	if(GetKeyState("Rbutton")) {
+		send, {Rbutton up}
+	}
+	else {
+		send, {Rbutton down}
+	}
 	return
-	x::
-	send,{Rbutton}
-	return
-	
 	;;;ALTER CAPSLOCK;;;
 	Enter::
-	KeyWait,CapsLock
-	KeyWait,Enter
-	if GetKeyState("CapsLock","T"){
-		SetCapslockState, Off
-		return
-	}
-	else{
-		SetCapslockState, On
-		return
-	}
+	SetCapsLockState, % (State:=!State) ? "On" : "Off"
 	return
 #if
 
 
 
 
-;;;CONTROL IME;;;
-; 左Shiftが単体で押されたら、直接入力
-~LShift Up::
-if (A_PriorKey = "LShift") {
-    Send, {vkF2sc070B}{vkF3sc029}
-}
-Return
+; ;;;CONTROL IME;;;
+; ; 左Shiftが単体で押されたら、直接入力
+; ~LShift Up::
+; if (A_PriorKey = "LShift") {
+    ; Send, {vkF2sc070B}{vkF3sc029}
+; }
+; Return
 
-; 右Shiftが単体で押されたら、ひらがな入力
-~RShift Up::
-if (A_PriorKey = "RShift") {
-    Send, {vkF2sc070B}
-}
-Return
+; ; 右Shiftが単体で押されたら、ひらがな入力
+; ~RShift Up::
+; if (A_PriorKey = "RShift") {
+    ; Send, {vkF2sc070B}
+; }
+; Return
 
 ;;;CONTROL THIS SCRIPT;;;
 >^r::
@@ -365,3 +404,6 @@ msgbox,Reloaded
 Reload
 Return
 
+>^x::
+msgbox, EXIT
+ExitApp
