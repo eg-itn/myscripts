@@ -33,6 +33,7 @@
 >!0::send,{F10}
 >!-::send,{F11}
 >!=::send,{F12}
+>!;::send,{BS}
 
 ;;;Ctrl;;;
 <^>!s::send,{Ctrl down}{Left}{Ctrl up}
@@ -316,8 +317,16 @@ return
 	MouseMove M_width*(1/4), 0, 0, R
 	return
 	i::
-	MouseGetPos, MX, MY
-	tooltip, %MX% %MY%
+	loop {
+	CoordMode, Mouse, Screen
+	MouseGetPos, screenX, screenY
+	CoordMode, Mouse, Relative
+	MouseGetPos, relativeX, relativeY
+	CoordMode, Mouse, Client
+	MouseGetPos, clientX, clientY
+	Tooltip, Absolute Coordinate: %screenX%`, %screenY%`nRelative Coordinate: %relativeX%`, %relativeY%`nClient Coordinate: %clientX%`, %clientY%
+	sleep, 500
+	}
 	return
 	
 ;;;SCROLL;;;
@@ -338,26 +347,19 @@ return
 	SendMessage, 0x114, 1, 0, %fcontrol%, A ; 0x114: WM_HSCROLL, 1: SB_LINELEFT.
 	return
 ;;;CLICK;;;
-	z::
+	1::
 	send,{LButton}
 	return
-	x::
+	2::
 	send,{MButton}
 	return
-	c::
+	3::
 	send,{RButton}
 	return
 	
 	;;;ALTER CAPSLOCK;;;
 	Enter::
-	if GetKeyState("CapsLock","T"){
-		SetCapslockState, Off
-		return
-	}
-	else{
-		SetCapslockState, On
-		return
-	}
+	SetCapsLockState, % (State:=!State) ? "On" : "Off"
 	return
 #if
 
@@ -384,3 +386,7 @@ return
 msgbox,Reloaded
 Reload
 Return
+
+>^x::
+msgbox, EXIT
+ExitApp
