@@ -255,13 +255,31 @@ RAlt::return
 
 
 ;;;MOUSE;;;
+; CapsLock::
+; keywait, CapsLock, U
+; keywait, CapsLock, D T0.2
+; if (ErrorLevel = 1) {
+	; return ;If CAPSLOCK is pressed once, do nothing
+; }
+; else { ;pressed twice within 0.2 seconds
+	; if (mousemode) {
+		; mousemode := False ;turn off the mousemode
+		; return
+	; }
+	; else{
+		; mousemode := True ;turn off the mousemode
+		; return
+	; }
+; }
+; return
+
 CapsLock::
-keywait, CapsLock, U
-keywait, CapsLock, D T0.2
-if (ErrorLevel = 1) {
-	return ;If CAPSLOCK is pressed once, do nothing
-}
-else { ;pressed twice within 0.2 seconds
+return
+
+#if GetKeyState("CapsLock", "P") or (mousemode)
+	Tab::send,{ESC}
+;;;MOVE;;;
+	`::
 	if (mousemode) {
 		mousemode := False ;turn off the mousemode
 		return
@@ -270,12 +288,7 @@ else { ;pressed twice within 0.2 seconds
 		mousemode := True ;turn off the mousemode
 		return
 	}
-}
-return
-
-#if GetKeyState("CapsLock", "P") or (mousemode)
-	Tab::send,{ESC}
-;;;MOVE;;;
+	return
 	w::
 	MouseMove 0,-20,0,R
 	return
