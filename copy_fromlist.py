@@ -15,10 +15,10 @@ def main(args):
         line = f.readline().rstrip()
         while line:
             print(line)
-            line = f.readline().rstrip()
             copy_from = os.path.join(args.inputdir, line)
             copy_to = os.path.join(args.outputdir, line)
             shutil.copy2(copy_from, copy_to)
+            line = f.readline().rstrip()
 
 
 if __name__ == "__main__":
