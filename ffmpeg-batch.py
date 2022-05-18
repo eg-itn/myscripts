@@ -42,19 +42,18 @@ def ffmpeg_to_jpg(args):
     # Check if input directory exists
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-
+    
     for file in os.listdir(input_dir):
-
         if file.endswith(".mp4"):
- 
-            check_fps(os.path.join(input_dir, file))
-        
             input_file = os.path.join(input_dir, file)
             output_file = os.path.join(output_dir, os.path.splitext(file)[0])
 
             # run ffmpeg
             try:
-                ffmpeg.input(input_file).output(f"{output_file}_%05d.jpg").run()
+                if args.fps == None:
+                    ffmpeg.input(input_file).output(f"{output_file}_%05d.jpg").run()
+                else:
+                    ffmpeg.input(input_file).filter('fps', fps=args.fps).output(f"{output_file}_%05d.jpg").run()
             except ffmpeg.Error as e:
                 print(e.stderr, file=sys.stderr)
 
@@ -77,6 +76,7 @@ if __name__ == "__main__":
     parser.add_argument("input_dir", help="Input directory")
     parser.add_argument("output_dir", help="Output directory")
     parser.add_argument("-f", "--output_format", help="Output format", default="mp4")  # Default is mp4
+    parser.add_argument("--fps", help="input fps", type=float)
     parser.add_argument("--task", help="task", required=True, choices=["change_format", "to_jpg", "checkfps"])
     args = parser.parse_args()
 
