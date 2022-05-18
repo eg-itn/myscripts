@@ -6,9 +6,7 @@ import argparse
 
 def check_fps(input_file):
     fps = ffmpeg.probe(input_file)['streams'][0]['avg_frame_rate'].split('/')[0]
-    if float(fps) < 30:
-        print(f"Warning: framerate of {input_file} is {fps}")
-        input()
+    return fps
 
 
 def ffmpeg_change_format(args):
@@ -44,11 +42,11 @@ def ffmpeg_to_jpg(args):
     # Check if input directory exists
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-    
+
     for file in os.listdir(input_dir):
 
         if file.endswith(".mp4"):
-        
+ 
             check_fps(os.path.join(input_dir, file))
         
             input_file = os.path.join(input_dir, file)
@@ -61,6 +59,15 @@ def ffmpeg_to_jpg(args):
                 print(e.stderr, file=sys.stderr)
 
 
+def ffmpeg_checkfps(args):
+    input_dir = args.input_dir
+
+    for file in os.listdir(input_dir):
+        if file.endswith(".mp4"):
+            input_file = os.path.join(input_dir, file)
+            fps = check_fps(input_file)
+            print(f"{input_file} fps: {fps}")
+
 if __name__ == "__main__":
 
     # Parse arguments
@@ -70,7 +77,7 @@ if __name__ == "__main__":
     parser.add_argument("input_dir", help="Input directory")
     parser.add_argument("output_dir", help="Output directory")
     parser.add_argument("-f", "--output_format", help="Output format", default="mp4")  # Default is mp4
-    parser.add_argument("--task", help="task", required=True, choices=["change_format", "to_jpg"])
+    parser.add_argument("--task", help="task", required=True, choices=["change_format", "to_jpg", "checkfps"])
     args = parser.parse_args()
 
     if args.task == "change_format":
@@ -82,5 +89,7 @@ if __name__ == "__main__":
         ffmpeg_change_format(args)
     elif args.task == "to_jpg":
         ffmpeg_to_jpg(args)
+    elif args.task == "checkfps":
+        ffmpeg_checkfps(args)
     else:
         print("Error: Invalid task")
