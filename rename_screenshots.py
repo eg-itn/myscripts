@@ -23,9 +23,9 @@ def rename_galaxy(file, outdir):
         year = new_name[0:4]
         month = new_name[4:6]
         day = new_name[6:8]
-        hh = new_name[8:10]
-        mm = new_name[10:12]
-        ss = new_name[12:14]
+        hh = new_name[9:11]
+        mm = new_name[11:13]
+        ss = new_name[13:15]
 
         new_name = '-'.join([year, month, day]) + ' ' + '-'.join([hh, mm, ss, '000']) + ext
 
@@ -61,9 +61,9 @@ if __name__ == "__main__":
     parser.add_argument("path", help="path to the folder containing the images")
     parser.add_argument("outdir", help="output directory")
     parser.add_argument("--type", choices=['1', '2', '3'], 
-                        help="rename type"+ \
-                            "1: potplayer"+ \
-                            "2: galaxy"+ \
+                        help="rename type..."+ \
+                            "1: potplayer / "+ \
+                            "2: galaxy / "+ \
                             "3: steam", \
                         required=True)
     parser.add_argument("--prefix", help="prefix of the images")
