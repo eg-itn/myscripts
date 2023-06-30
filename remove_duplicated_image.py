@@ -60,9 +60,6 @@ def remove_duplicated_images(imagehashes: dict, path: str):
     Returns:
         None
     """
-    subdir = os.path.join(path, 'duplicated')
-    os.makedirs(subdir, exist_ok=True)
-
     dup_hashes = [h for h in imagehashes if len(imagehashes[h]) > 1]
     for hash in dup_hashes:
         # if len(imagehashes[hash]) > 2:
@@ -94,13 +91,16 @@ def main():
     """メイン関数"""
     parser = argparse.ArgumentParser(description='Remove duplicated images.')
     parser.add_argument('root_dir', help='Path to image files.')
+    parser.add_argument('--debug', help='Debug mode(just copy to subdir)', default=False, action='store_true')
     args = parser.parse_args()
     for root, dirs, files in os.walk(args.root_dir):
         imagehashes, dup_count = make_imagehashes(root)
         logger.info(f'{dup_count} duplicated images were found in {root}')
         if dup_count > 0:
-            # debug_check_duplicated_images(imagehashes, root)
-            remove_duplicated_images(imagehashes, root)
+            if args.debug:
+                debug_check_duplicated_images(imagehashes, root)
+            else:
+                remove_duplicated_images(imagehashes, root)
 
 if __name__ == '__main__':
     main()
